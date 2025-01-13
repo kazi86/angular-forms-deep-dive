@@ -1,4 +1,5 @@
-<form #form='ngForm' (ngSubmit)="onSubmit(form)">
+<!--<form #form='ngForm' (ngSubmit)="onSubmit(form)">-->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 
   <h2>Login</h2>
 
@@ -8,7 +9,9 @@
 
       <label for="email">Email</label>
 
-      <input id="email" type="email" name="email" #email="ngModel" ngModel email required/>
+<!--      <input id="email" type="email" name="email" #email="ngModel" ngModel email required/>-->
+
+      <input id="email" type="email" formControlName="email" />
 
     </div>
 
@@ -16,7 +19,9 @@
 
       <label for="password">Password</label>
 
-      <input id="password" type="password" name="password" minLength="6" #password="ngModel" ngModel required/>
+<!--      <input id="password" type="password" name="password" minLength="6" #password="ngModel" ngModel required/>-->
+
+      <input id="password" type="password" formControlName="password"/>
 
     </div>
 
@@ -24,17 +29,30 @@
 
   </div>
 
-  @if (email.invalid && email.touched && email.dirty) {
+<!--  @if (email.invalid && email.touched && email.dirty) {-->
 
-    <p class="control-error">Invalid email entered.</p>
+<!--    <p class="control-error">Invalid email entered.</p>-->
 
-  }
+<!--  }-->
 
 
-  @if (password.invalid && password.touched && password.dirty) {
+<!--  @if (password.invalid && password.touched && password.dirty) {-->
 
-    <p class="control-error">Invalid password entered.</p>
+<!--    <p class="control-error">Invalid password entered.</p>-->
 
-  }
+<!--  }-->
+
+    @if(getIsEmailInvalid){
+
+      <p class="control-error">Invalid email entered </p>
+
+    }
+
+
+    @if(getIsPasswordInvalid){
+
+      <p class="control-error">Invalid password entered </p>
+
+    }
 
 </form>
