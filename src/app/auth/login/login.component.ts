@@ -74,6 +74,8 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(){
 
+    const savedValues = JSON.parse(window.localStorage.getItem('save-login-signUp'));
+
     const subscription = this.form.valueChanges.pipe(debounceTime(500)).subscribe({
 
       next:(value)=>{
@@ -84,10 +86,18 @@ export class LoginComponent implements OnInit {
 
     });
 
-    this.destroyRef.onDestroy(()=>{
+    this.form.setValue({
+
+      email: savedValues.email,
+      password: savedValues.password
 
     });
 
+    this.destroyRef.onDestroy(()=>{
+
+        subscription.unsubscribe();
+
+    });
 
   }
 
